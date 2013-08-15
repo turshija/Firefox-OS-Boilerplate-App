@@ -19,16 +19,16 @@
 
     // WebActivities
     var pickImage = document.querySelector("#pick-image");
-    if (pickImage) { 
+    if (pickImage) {
         pickImage.onclick = function () {
             var pick = new MozActivity({
                 name: "pick",
                 data: {
                     type: ["image/png", "image/jpg", "image/jpeg"]
-                 }
+                }
             });
 
-            pick.onsuccess = function () { 
+            pick.onsuccess = function () {
                 var img = document.createElement("img");
                 img.src = window.URL.createObjectURL(this.result.blob);
                 var imagePresenter = document.querySelector("#image-presenter");
@@ -36,20 +36,20 @@
                 imagePresenter.style.display = "block";
             };
 
-            pick.onerror = function () { 
+            pick.onerror = function () {
                 alert("Can't view the image!");
             };
-        }
+        };
     }
 
     var pickAnything = document.querySelector("#pick-anything");
-    if (pickAnything) { 
+    if (pickAnything) {
         pickAnything.onclick = function () {
              var pickAny = new MozActivity({
                  name: "pick"
              });
 
-            pickAny.onsuccess = function () { 
+            pickAny.onsuccess = function () {
                 var img = document.createElement("img");
                 if (this.result.blob.type.indexOf("image") != -1) {
                     img.src = window.URL.createObjectURL(this.result.blob);
@@ -57,20 +57,20 @@
                 }
             };
 
-            pickAny.onerror = function () { 
+            pickAny.onerror = function () {
                 console.log("An error occurred");
             };
-        }
+        };
     }
 
     var record = document.querySelector("#record");
-    if (record) { 
+    if (record) {
         record.onclick = function () {
             var rec = new MozActivity({
                 name: "record" // Possibly capture in future versions
             });
 
-            rec.onsuccess = function () { 
+            rec.onsuccess = function () {
                 var img = document.createElement("img");
                 img.src = window.URL.createObjectURL(this.result.blob);
                 var imagePresenter = document.querySelector("#image-presenter");
@@ -78,14 +78,14 @@
                 imagePresenter.style.display = "block";
             };
 
-            rec.onerror = function () { 
+            rec.onerror = function () {
                 alert("No taken picture returned");
             };
-        }
+        };
     }
 
     var dial = document.querySelector("#dial");
-    if (dial) { 
+    if (dial) {
         dial.onclick = function () {
             var call = new MozActivity({
                 name: "dial",
@@ -93,11 +93,11 @@
                     number: "+46777888999"
                 }
             });
-        }
+        };
     }
 
     var sendSMS = document.querySelector("#send-sms");
-    if (sendSMS) { 
+    if (sendSMS) {
         sendSMS.onclick = function () {
             var sms = new MozActivity({
                 name: "new", // Possible compose-sms in future versions
@@ -106,11 +106,11 @@
                     number: "+46777888999"
                 }
             });
-        }
+        };
     }
 
     var addContact = document.querySelector("#add-contact");
-    if (addContact) { 
+    if (addContact) {
         addContact.onclick = function () {
             var newContact = new MozActivity({
                 name: "new", // Possibly add-contact in future versions
@@ -127,11 +127,11 @@
                     }
                 }
             });
-        }
+        };
     }
 
     var share = document.querySelector("#share");
-    if (share) { 
+    if (share) {
         share.onclick = function () {
             var sharing = new MozActivity({
                 name: "share",
@@ -141,7 +141,7 @@
                     url: "http://robertnyman.com"
                 }
             });
-        }
+        };
     }
 
     var shareImage = document.querySelector("#share-image"),
@@ -155,7 +155,7 @@
                 blobCanvas.height = imgToShare.height;
 
                 // Get context and draw image
-                var blobCanvasContext = blobCanvas.getContext("2d");            
+                var blobCanvasContext = blobCanvas.getContext("2d");
                 blobCanvasContext.drawImage(imgToShare, 0, 0);
 
                 // Export to blob and share through a Web Activitiy
@@ -173,11 +173,11 @@
             else {
                 alert("Image failed to load, can't be shared");
             }
-        }
+        };
     }
 
     var viewURL = document.querySelector("#view-url");
-    if (viewURL) { 
+    if (viewURL) {
         viewURL.onclick = function () {
             var openURL = new MozActivity({
                 name: "view",
@@ -186,11 +186,11 @@
                     url: "http://robertnyman.com"
                 }
             });
-        }
+        };
     }
 
     var composeEmail = document.querySelector("#compose-email");
-    if (composeEmail) { 
+    if (composeEmail) {
         composeEmail.onclick = function () {
             var createEmail = new MozActivity({
                 name: "new", // Possibly compose-mail in future versions
@@ -199,11 +199,11 @@
                     url: "mailto:example@example.org"
                 }
             });
-        }
+        };
     }
 
     var saveBookmark = document.querySelector("#save-bookmark");
-    if (saveBookmark) { 
+    if (saveBookmark) {
         saveBookmark.onclick = function () {
             var savingBookmark = new MozActivity({
                 name: "save-bookmark",
@@ -212,9 +212,9 @@
                     url: "http://robertnyman.com",
                     name: "Robert's talk",
                     icon: "http://robertnyman.com/favicon.png"
-                 }
+                }
             });
-        }
+        };
     }
 
     // Notifications
@@ -222,10 +222,10 @@
     if (addNotification) {
         addNotification.onclick = function () {
             var notification = navigator.mozNotification.createNotification(
-                "See this", 
+                "See this",
                 "This is a notification"
             );
-             notification.show();
+            notification.show();
         };
     }
 
@@ -235,12 +235,12 @@
         lockOrientation.onclick = function () {
             /*
                 Possible values:
-                    "landscape", 
+                    "landscape",
                     "portrait"
                     "landscape-primary"
                     "landscape-secondary"
                     "portrait-primary"
-                    "portrait-secondary" 
+                    "portrait-secondary"
             */
             var portraitLock = screen.mozLockOrientation("portrait");
             if (portraitLock) {
@@ -253,13 +253,13 @@
     var vibrate = document.querySelector("#vibrate");
     if (vibrate) {
         vibrate.onclick = function () {
-            var vibrating =  navigator.vibrate(2000);
+            var vibrating = navigator.vibrate(2000);
             /*
                 Possible values:
                     On/off pattern:
-                     navigator.vibrate([200, 100, 200, 100]);
+                    navigator.vibrate([200, 100, 200, 100]);
                     Turn off vibration
-                     navigator.vibrate(0);
+                    navigator.vibrate(0);
             */
         };
     }
@@ -272,7 +272,7 @@
         checkConnection.onclick = function () {
             var connection = window.navigator.mozConnection,
                 online = "<strong>Connected:</strong> " + (connection.bandwidth),
-                metered = "<strong>Metered:</strong> " + connection.metered; 
+                metered = "<strong>Metered:</strong> " + connection.metered;
 
             connectionDisplay.innerHTML = "<h4>Result from Check connection</h4>" + online + "<br>" + metered;
             connectionDisplay.style.display = "block";
@@ -370,15 +370,15 @@
             deviceOrientationDisplay.style.display = "block";
             window.ondeviceorientation = function (event) {
                 var orientedTo = (event.beta > 45 && event.beta < 135) ? "top" : (event.beta < -45 && event.beta > -135) ? "bottom" : (event.gamma > 45) ? "right" : (event.gamma < -45) ? "left" : "flat";
-                var orientation = "<strong>Absolute: </strong>" + event.absolute + "<br>"
-                                + "<strong>Alpha: </strong>" + event.alpha + "<br>"
-                                + "<strong>Beta: </strong>" + event.beta + "<br>"
-                                + "<strong>Gamma: </strong>" + event.gamma + "<br>"
-                                + "<strong>Device orientation: </strong>" + orientedTo;
+                var orientation = "<strong>Absolute: </strong>" + event.absolute + "<br>" +
+                                  "<strong>Alpha: </strong>" + event.alpha + "<br>" +
+                                  "<strong>Beta: </strong>" + event.beta + "<br>" +
+                                  "<strong>Gamma: </strong>" + event.gamma + "<br>" +
+                                  "<strong>Device orientation: </strong>" + orientedTo;
 
-                deviceOrientationDisplay.innerHTML = orientation 
+                deviceOrientationDisplay.innerHTML = orientation;
             };
-        }
+        };
     }
 
     // Cross domain XHR
@@ -393,7 +393,7 @@
                     crossDomainXHRDisplay.innerHTML = "<h4>Result from Cross-domain XHR</h4>" + xhr.response;
                     crossDomainXHRDisplay.style.display = "block";
                 }
-            }
+            };
 
             xhr.onerror = function () {
                 crossDomainXHRDisplay.innerHTML = "<h4>Result from Cross-domain XHR</h4><p>Cross-domain XHR failed</p>";
@@ -409,30 +409,30 @@
     if (deviceStoragePictures && deviceStoragePicturesDisplay) {
         deviceStoragePictures.onclick = function () {
             var deviceStorage = navigator.getDeviceStorage("pictures"),
-                cursor = deviceStorage.enumerate(); 
+                cursor = deviceStorage.enumerate();
 
             deviceStoragePicturesDisplay.innerHTML = "<h4>Result from deviceStorage - pictures</h4>";
-             
-              cursor.onsuccess = function() { 
-                if (!cursor.result)  {
+
+            cursor.onsuccess = function() {
+                if (!cursor.result) {
                     deviceStoragePicturesDisplay.innerHTML = "No files";
                 }
-                
+
                 var file = cursor.result,
-                    filePresentation; 
+                    filePresentation;
 
                 filePresentation = "<strong>" + file.name + ":</strong> " + parseInt(file.size / 1024, 10) + "kb<br>";
                 filePresentation += "<p><img src='" + window.URL.createObjectURL(file) + "' alt=''></p>";
                 deviceStoragePicturesDisplay.innerHTML += filePresentation;
 
                 deviceStoragePicturesDisplay.style.display = "block";
-             };
+            };
 
-              cursor.onerror = function () {
+            cursor.onerror = function () {
                 console.log("Error");
                 deviceStoragePicturesDisplay.innerHTML = "<h4>Result from deviceStorage - pictures</h4><p>deviceStorage failed</p>";
                 deviceStoragePicturesDisplay.style.display = "block";
             };
         };
     }
-})(); 
+})();
